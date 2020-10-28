@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Send request with fetch
+{% endblock %}
+
+{% block content %}
+    <h3>Send request with fetch</h3>
+    <div id="app-5">
+        <button v-on:click="send_request">[[ buttonText ]]</button>
+        <span v-if="fetching">Fetching...</span>
+        <ol>
+            <li v-for="joke in jokes">
+                [[ joke.text ]]
+            </li>
+        </ol>
+    </div>
+
+    <script>
+        var app5 = new Vue({
+            delimiters: ['[[', ']]'],
+            el: '#app-5',
+            data: {
+                buttonText: 'Send Request',
+                jokes: [],
+                fetching: false,
+            },
+            methods: {
+                send_request: function () {
+                    const vm = this;
+                    vm.fetching = true;
+                    fetch('https://sv443.net/jokeapi/v2/joke/Programming?blacklistFlags=nsfw&amount=4')
+                        .then(response => {
+                            return response.json()
+                        })
+                        .then(data => {
+                            vm.fetching = false;
+                            console.log(`I have got ${data.amount} `);
+                            data.jokes.forEach(joke => {
+                                vm.jokes.push({ text: joke.joke })
+                            })
+                        }
+                    );
+                }
+            }
+        })
+    </script>
+    
+{% endblock %}

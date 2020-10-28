@@ -20,7 +20,12 @@ from django.template.response import TemplateResponse
 def index(request):
     return TemplateResponse(request, 'index.html', {})
 
+
+def fetch(request):
+    return TemplateResponse(request, 'fetch.html', {})
+
 urlpatterns = [
     path('', index),
+    path('fetch', fetch),
     path('admin/', admin.site.urls),
 ]
