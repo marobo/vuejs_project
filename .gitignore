@@ -3,8 +3,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-*.pyc
 *.swp
+db.sqlite3
 
 # C extensions
 *.so
@@ -57,6 +57,10 @@ coverage.xml
 # Translations
 *.mo
 *.pot
+*.pyc
+*/*/*/__pycache__/
+*/*/__pycache__/
+*/__pycache__/
 
 # Django stuff:
 *.log
